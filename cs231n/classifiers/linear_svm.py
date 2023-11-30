@@ -33,17 +33,17 @@ def svm_loss_naive(W, X, y, reg):
       scores = X[i].dot(W)
       correct_score = scores[y[i]]
 
-        for j in range(num_classes):
-          if j == y[i]:
-            continue
-        
-          score_diff = (scores[j]-correct_score)+1
+    for j in range(num_classes):
+      if j == y[i]:
+        continue
     
-          if score_diff > 0:
-            loss = loss + score_diff
-    
-            dW[:,y[i]] -= X[i,:]
-            dW[:,j] += X[i,:]
+      score_diff = (scores[j]-correct_score)+1
+
+      if score_diff > 0:
+        loss = loss + score_diff
+
+        dW[:,y[i]] -= X[i,:]
+        dW[:,j] += X[i,:]
 
 
     # Right now the loss is a sum over all training examples, but we want it
